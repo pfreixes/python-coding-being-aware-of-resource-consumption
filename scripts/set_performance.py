@@ -21,6 +21,10 @@ print "Using dict type: {}".format(
         timeit.timeit("dict_diff({i:i for i in xrange(0, 10**4)}, {i:i for i in xrange(10, 10**4+10)})", number=1, setup="from __main__ import dict_diff")
 )
 
+print "Using dict type + viewkeys: {}".format(
+        timeit.timeit("{i:i for i in xrange(0, 10**4)}.viewkeys() ^ {i:i for i in xrange(10, 10**4+10)}.viewkeys()", number=1)
+)
+
 print "Using set type: {}".format(
     timeit.timeit("assert len(set((i for i in xrange(0, 10**4))) ^ set((i for i in xrange(10, 10**4+10)))) == 20", number=1)
 )
